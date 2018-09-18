@@ -17,14 +17,21 @@ class dailyWeather:
 		self.snowOnGround = snowOnGround
 		#self.displayData()
 	def displayData(self):
-		print("The Date is " + str(self.year) + "/" + str(self.month) + "/" + str(self.day) + "  Max Temp: " + str(self.maxTemp) + " Min Temp: " + str(self.minTemp) )
+		data = ''
+		data = "The Date is " + str(self.year) + "/" + str(self.month) + "/" + str(self.day) + "  Max Temp: " + str(self.maxTemp) + " Min Temp: " + str(self.minTemp) 
+		return data
+		
+def printData(args):
+	file = open("data.txt", "w")
+	for day in args:
+		data = day.displayData()
+		file.write(data + "\n")
+	file.close
+
 		
 def main():
-	#file = open("data.xml", "r")
 	yearsWeather = []
-	#for i in range(365):
-		#
-		
+
 	tree = ET.parse('data.xml')
 	root = tree.getroot()
 	for child in root:
@@ -34,6 +41,6 @@ def main():
 	
 	for day in yearsWeather:
 		day.displayData()
-
-	#file.close() 
+		
+	printData(yearsWeather)
 main()
