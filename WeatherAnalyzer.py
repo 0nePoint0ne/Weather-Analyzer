@@ -91,13 +91,14 @@ def storeData(year):
 
 	for day in year:
 		
-		dataset.append('TimeStap:': str(day.year + "-" + day.month + "-" + day.day) ,'Max Temp:': float(day.maxTemp),'Min Temp:': float(day.minTemp), 'Mean Temp:': day.meanTemp, 'Total Rain:': day.totalRain, 'Total Snow:': day.totalSnow, 'Total Percipitation:': day.totalPrecipitation, 'Snow On Ground:': day.snowOnGround})
+		dataset.append({'Max Temp:': float(day.maxTemp),'Min Temp:': float(day.minTemp), 'Mean Temp:': day.meanTemp, 'Total Rain:': day.totalRain, 'Total Snow:': day.totalSnow, 'Total Percipitation:': day.totalPrecipitation, 'Snow On Ground:': day.snowOnGround})
+		index.append(str(day.year + "-" + day.month + "-" + day.day))
 	
 	#print(dataset[2])
-	df = pd.DataFrame(dataset)
+	df = pd.DataFrame(dataset, index)
 
 	df.to_csv("data.csv")
-	print(df.to_string())
+	#print(df.to_string())
 	file.write(str(df.to_string()))
 	file.close
 	
@@ -108,9 +109,8 @@ def monthlySummary(year):
 	value = -1
 	for data in dataset:
 		temp = data
-		value = value + 1
 		
-		#print(index[value] + " " + str(temp['Max Temp:']))
+		print(index[value])
 	#print(dataset)
 	#print(dataset['Max Temp:'])
  
