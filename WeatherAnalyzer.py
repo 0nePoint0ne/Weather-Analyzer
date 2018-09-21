@@ -103,17 +103,21 @@ def storeData(year):
 	file.close
 	
 def monthlySummary(year):
-	temp = {}
-	
+	monthlySummaryData = [{'Highest Temp:': 0.0,'Lowest Temp:': 0.0, 'Total Monthly Snow:': 0.0, 'Total Monthly Rain:': 0.0, 'Total Monthly Percipitation:':0.0, 'Total Monthly Snow:': 0.0, 'Monthly Snow On Ground:': 0.0}]
 	file = open("dataSummary.txt","w")
-	value = -1
-	for data in dataset:
-		temp = data
-		
-		print(index[value])
+	
+	print(len(dataset))
+	
+	for x in range(len(dataset)):
+		data = dataset[x - 1]
+		if(monthlySummaryData[int(index[x-1][5:7]) - 1] < data['Max Temp:']):
+			monthlySummaryData[int(index[x-1][5:7]) - 1]['Highest Temp:'].update = data['Max Temp:']
 	#print(dataset)
 	#print(dataset['Max Temp:'])
- 
+	
+	for i in monthlySummaryData:
+		print(i)
+	
 	#file.write(str(df))
 	file.close
 	
