@@ -100,27 +100,30 @@ def storeData(year):
 	
 def monthlySummary(year):
 	monthlySummaryData = []
-	
+	test = ""
 	file = open("dataSummary.txt","w")
 	
 	for x in range(len(dataset)):
 		data = dataset[x - 1]
 
 		if(int(index[x-1][5:7])):
-			print(index[x-1][8:10] + " " +  str(data['Max Temp:']))
+			test = (index[x-1][8:10] + " " +  str(data['Max Temp:']))
 		
 		
-			
-		#monthlySummaryData.append({'Highest Temp:': 0.0 ,'Lowest Temp:': 0.0, 'Total Monthly Snow:': 0.0, 'Total Monthly Rain:': 0.0, 'Total Monthly Percipitation:':0.0, 'Total Monthly Snow:': 0.0, 'Monthly Snow On Ground:': 0.0})
+	
+	
+	for x in range(12):
+		monthlySummaryData.append({'Highest Temp:': 0.0 ,'Lowest Temp:': 0.0, 'Total Monthly Snow:': 0.0, 'Total Monthly Rain:': 0.0, 'Total Monthly Percipitation:':0.0, 'Total Monthly Snow:': 0.0, 'Monthly Snow On Ground:': 0.0})
 	#print(dataset)
 	#print(dataset['Max Temp:'])
 	
 	
-
+	months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+	df = pd.DataFrame(monthlySummaryData, months)
 	
 	#for i in monthlySummaryData:
 		#print(i)
-	
+	print(df)
 	#file.write(str(df))
 	file.close
 	
