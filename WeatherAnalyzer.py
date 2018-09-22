@@ -94,29 +94,32 @@ def storeData(year):
 		dataset.append({'Max Temp:': float(day.maxTemp),'Min Temp:': float(day.minTemp), 'Mean Temp:': day.meanTemp, 'Total Rain:': day.totalRain, 'Total Snow:': day.totalSnow, 'Total Percipitation:': day.totalPrecipitation, 'Snow On Ground:': day.snowOnGround})
 		index.append(str(day.year + "-" + day.month + "-" + day.day))
 	
-	#print(dataset[2])
 	df = pd.DataFrame(dataset, index)
-
-	df.to_csv("data.csv")
-	#print(df.to_string())
 	file.write(str(df.to_string()))
 	file.close
 	
 def monthlySummary(year):
-	monthlySummaryData = [{'Highest Temp:': 0.0,'Lowest Temp:': 0.0, 'Total Monthly Snow:': 0.0, 'Total Monthly Rain:': 0.0, 'Total Monthly Percipitation:':0.0, 'Total Monthly Snow:': 0.0, 'Monthly Snow On Ground:': 0.0}]
-	file = open("dataSummary.txt","w")
+	monthlySummaryData = []
 	
-	print(len(dataset))
+	file = open("dataSummary.txt","w")
 	
 	for x in range(len(dataset)):
 		data = dataset[x - 1]
-		if(monthlySummaryData[int(index[x-1][5:7]) - 1] < data['Max Temp:']):
-			monthlySummaryData[int(index[x-1][5:7]) - 1]['Highest Temp:'].update = data['Max Temp:']
+
+		if(int(index[x-1][5:7])):
+			print(index[x-1][8:10] + " " +  str(data['Max Temp:']))
+		
+		
+			
+		#monthlySummaryData.append({'Highest Temp:': 0.0 ,'Lowest Temp:': 0.0, 'Total Monthly Snow:': 0.0, 'Total Monthly Rain:': 0.0, 'Total Monthly Percipitation:':0.0, 'Total Monthly Snow:': 0.0, 'Monthly Snow On Ground:': 0.0})
 	#print(dataset)
 	#print(dataset['Max Temp:'])
 	
-	for i in monthlySummaryData:
-		print(i)
+	
+
+	
+	#for i in monthlySummaryData:
+		#print(i)
 	
 	#file.write(str(df))
 	file.close
