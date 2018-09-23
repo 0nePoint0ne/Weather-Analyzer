@@ -1,0 +1,14 @@
+Month:  Highest Temp:  Lowest Temp:  Total Monthly Rain:  Total Monthly Snow:  Total Monthly Percipitation:
+                                                                                                              
+  January           10.6         -15.4                 28.6                 10.6                          38.4
+ February           16.0         -26.3                 28.0                 17.8                          45.6
+    March           20.4         -10.9                 63.2                 13.0                          80.0
+    April           25.5          -9.0                 36.7                 20.3                          59.8
+      May           31.5           0.1                 34.2                  0.0                          34.2
+     June           34.6           7.4                 26.4                  0.0                          26.4
+     July           36.0          12.3                 39.8                  0.0                          39.8
+   August           35.9          13.1                 66.8                  0.0                          66.8
+September           35.0           7.9                 66.4                  0.0                          66.4
+  October           25.6          -0.1                 40.6                  0.0                          40.6
+ November           18.2          -4.8                 54.2                  1.0                          55.2
+ December            9.7         -13.8                 32.8                 44.4                          77.4
