@@ -100,30 +100,33 @@ def storeData(year):
 	
 def monthlySummary(year):
 	monthlySummaryData = []
-	summarizeData = [0,0,0,0,0,0,0]
+	summarizeData = [0,0,0,0,0,0,0,0]
 	file = open("dataSummary.txt","w")
 	#index[x-1][8:10] for finding month
-	for x in range(len(dataset)):
+	for x in range(31):#len(dataset)):
 		data = dataset[x - 1]
 
-		if(SummarizeData[0] < data['Max Temp:']):
-			summarizeData[0] = data['Max Temp:']
+		if(SummarizeData[0] < float(data['Max Temp:'])):
+			summarizeData[0] = float(data['Max Temp:'])
 			
-		if(SummarizeData[1] > data['Min Temp:']):
-			summarizeData[1] = data['Min Temp:']
+		if(SummarizeData[1] > float(data['Min Temp:'])):
+			summarizeData[1] = float(data['Min Temp:'])
 			
-		SummarizeData[2] += data['Total Snow:']
+		summarizeData[2] += float(data['Mean Temp:'])
+			
+		SummarizeData[3] += float(data['Total Snow:'])
 		
-		SummarizeData[3] += data['Total Rain:']
+		SummarizeData[4] += float(data['Total Rain:'])
 		
-		SummarizeData[4] += data['Total Percipitation:']
+		SummarizeData[5] += float(data['Total Percipitation:'])
 		
-		summarizeData[5] += data['Snow On Ground:']
+		summarizeData[6] += float(data['Snow On Ground:'])
 		
+		SummarizeData[7] += float(data['Min Temp:'])
 	
-	
-	for x in range(12):
-		monthlySummaryData.append({'Highest Temp:': 0.0 ,'Lowest Temp:': 0.0, 'Total Monthly Snow:': 0.0, 'Total Monthly Rain:': 0.0, 'Total Monthly Percipitation:':0.0, 'Total Monthly Snow:': 0.0, 'Monthly Snow On Ground:': 0.0})
+	print(summarizeData[7])
+	#for x in range(12):
+		#monthlySummaryData.append({'Highest Temp:': 0.0 ,'Lowest Temp:': 0.0, 'Total Monthly Snow:': 0.0, 'Total Monthly Rain:': 0.0, 'Total Monthly Percipitation:':0.0, 'Total Monthly Snow:': 0.0, 'Monthly Snow On Ground:': 0.0})
 	#print(dataset)
 	#print(dataset['Max Temp:'])
 	
