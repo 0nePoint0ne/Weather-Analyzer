@@ -66,19 +66,19 @@ class dailyWeather:
 		if(totalRain == None):
 			self.totalRain = 0.0
 		else:
-			self.totalRain = totalRain
+			self.totalRain = float(totalRain)
 		if(totalSnow == None):
 			self.totalSnow = 0.0
 		else:
-			self.totalSnow = totalSnow
+			self.totalSnow = float(totalSnow)
 		if(totalPrecipitation == None):
 			self.totalPrecipitation = 0.0
 		else:
-			self.totalPrecipitation = totalPrecipitation
+			self.totalPrecipitation = float(totalPrecipitation)
 		if(snowOnGround == None):
 			self.snowOnGround = 0
 		else:
-			self.snowOnGround = snowOnGround
+			self.snowOnGround = float(snowOnGround)
 		
 		#self.displayData()
 	def displayData(self):
@@ -91,52 +91,43 @@ def storeData(year):
 
 	for day in year:
 		
-		dataset.append({'Max Temp:': float(day.maxTemp),'Min Temp:': float(day.minTemp), 'Mean Temp:': day.meanTemp, 'Total Rain:': day.totalRain, 'Total Snow:': day.totalSnow, 'Total Percipitation:': day.totalPrecipitation, 'Snow On Ground:': day.snowOnGround})
-		index.append(str(day.year + "-" + day.month + "-" + day.day))
+		dataset.append({'Year:': day.year ,'Month:': day.month, 'Day:': day.day ,'Max Temp:': float(day.maxTemp),'Min Temp:': float(day.minTemp), 'Mean Temp:': day.meanTemp, 'Total Rain:': day.totalRain, 'Total Snow:': day.totalSnow, 'Total Percipitation:': day.totalPrecipitation, 'Snow On Ground:': day.snowOnGround})
+		#index.append(str(day.year + "-" + day.month + "-" + day.day))
 	
-	df = pd.DataFrame(dataset, index)
-	file.write(str(df.to_string()))
+	
+	
+	
+	df = pd.DataFrame(dataset)
+	
+	df['TimeStamp:'] = df['Year:'] + '/' + df['Month:'] + '-' + df['Day:']
+	
+	#df['data'] = df.groupby(df.index)['Max Temp:'].max()
+	#print(df.groupby('Month:')['Max Temp:'].max())
+	
+
+	
+	#print(df[['TimeStamp:','Max Temp:', 'Min Temp:', 'Mean Temp:', 'Total Rain:', 'Total Snow:', 'Total Percipitation:', 'Snow On Ground:' ]].to_string(index = False))
+	file.write(str(df.to_string(index = False)))
 	file.close
 	
 def monthlySummary(year):
-	monthlySummaryData = []
-	summarizeData = [0,0,0,0,0,0,0,0]
 	file = open("dataSummary.txt","w")
-	#index[x-1][8:10] for finding month
-	for x in range(31):#len(dataset)):
-		data = dataset[x - 1]
 
-		if(SummarizeData[0] < float(data['Max Temp:'])):
-			summarizeData[0] = float(data['Max Temp:'])
-			
-		if(SummarizeData[1] > float(data['Min Temp:'])):
-			summarizeData[1] = float(data['Min Temp:'])
-			
-		summarizeData[2] += float(data['Mean Temp:'])
-			
-		SummarizeData[3] += float(data['Total Snow:'])
-		
-		SummarizeData[4] += float(data['Total Rain:'])
-		
-		SummarizeData[5] += float(data['Total Percipitation:'])
-		
-		summarizeData[6] += float(data['Snow On Ground:'])
-		
-		SummarizeData[7] += float(data['Min Temp:'])
-	
-	print(summarizeData[7])
-	#for x in range(12):
-		#monthlySummaryData.append({'Highest Temp:': 0.0 ,'Lowest Temp:': 0.0, 'Total Monthly Snow:': 0.0, 'Total Monthly Rain:': 0.0, 'Total Monthly Percipitation:':0.0, 'Total Monthly Snow:': 0.0, 'Monthly Snow On Ground:': 0.0})
-	#print(dataset)
-	#print(dataset['Max Temp:'])
-	
 	
 	months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
-	df = pd.DataFrame(monthlySummaryData, months)
+	df = pd.DataFrame(dataset)
+	df['TimeStamp:'] = df['Year:'] + '/' + df['Month:']
+	
+	monthlySummary = {'Highest Temp:': df.groupby('Month:')['Max Temp:'].max(),'Lowest Temp:': df.groupby('Month:')['Min Temp:'].min(),'Total Monthly Rain:': df.groupby('Month:')['Total Rain:'].sum()}
+	sdf = pd.DataFrame(monthlySummary, months)
+	
+	
+	
+	print(sdf)
 	
 	#for i in monthlySummaryData:
 		#print(i)
-	print(df)
+	#print(df)
 	#file.write(str(df))
 	file.close
 	
