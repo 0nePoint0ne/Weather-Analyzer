@@ -100,15 +100,25 @@ def storeData(year):
 	
 def monthlySummary(year):
 	monthlySummaryData = []
-	test = ""
+	summarizeData = [0,0,0,0,0,0,0]
 	file = open("dataSummary.txt","w")
-	
+	#index[x-1][8:10] for finding month
 	for x in range(len(dataset)):
 		data = dataset[x - 1]
 
-		if(int(index[x-1][5:7])):
-			test = (index[x-1][8:10] + " " +  str(data['Max Temp:']))
+		if(SummarizeData[0] < data['Max Temp:']):
+			summarizeData[0] = data['Max Temp:']
+			
+		if(SummarizeData[1] > data['Min Temp:']):
+			summarizeData[1] = data['Min Temp:']
+			
+		SummarizeData[2] += data['Total Snow:']
 		
+		SummarizeData[3] += data['Total Rain:']
+		
+		SummarizeData[4] += data['Total Percipitation:']
+		
+		summarizeData[5] += data['Snow On Ground:']
 		
 	
 	
