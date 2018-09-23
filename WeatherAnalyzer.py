@@ -3,7 +3,7 @@ import re
 import xml.etree.ElementTree as ET
 
 dataset = []
-index = []
+#index = []
 
 class dailyWeather:
 	def __init__(self, day, month, year, maxTemp, minTemp, meanTemp, heatDegDays, coolDegDays, totalRain, totalSnow, totalPrecipitation, snowOnGround):
